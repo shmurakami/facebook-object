@@ -25,6 +25,8 @@ class testMe extends testBase
         $adaccounts = $me->adaccounts;
         $this->assertTrue(is_array($adaccounts));
 
+        $adaccounts = $user->adaccounts;
+        $this->assertTrue(is_array($adaccounts));
 
     }
 }

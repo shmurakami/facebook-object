@@ -9,15 +9,17 @@ use TakaakiMizuno\FacebookObject\Repositories\BaseRepository;
 class BaseObject
 {
 
+    static public    $_edges         = [];
+
+    static public    $_defaultFields = null;
+
+    static protected $_fields        = ['id'];
+
     /** @var array */
     protected $_data;
 
     /** @var \Facebook\FacebookSession */
-    protected $_session;
-
-    protected $_fields = ['id'];
-
-    protected $_edges = [];
+    protected        $_session;
 
     /**
      * @param array $data
@@ -31,19 +33,25 @@ class BaseObject
 
     public function __get($key)
     {
-        if (in_array($key, $this->_fields) and array_key_exists($key, $this->_data)) {
+        if (in_array($key, static::$_fields) and array_key_exists($key, $this->_data)) {
             return $this->_data[$key];
         }
-        if (array_key_exists($key, $this->_edges)) {
+        if (array_key_exists($key, static::$_edges)) {
             $path = $this->basePathForEdge() . $key;
             $repository = new \TakaakiMizuno\FacebookObject\Repositories\BaseRepository($this->_session);
-            if ($this->_edges[$key]['isList']) {
-                return $repository->allWithClass($path, '\TakaakiMizuno\FacebookObject\Objects\\'. $this->_edges[$key]['object']);
+            if (static::$_edges[$key]['isList']) {
+                return $repository->allWithClass($path, static::$_edges[$key]['object']);
             } else {
-                return $repository->findWithClass($path, '\TakaakiMizuno\FacebookObject\Objects\\'. $this->_edges[$key]['object']);
+                return $repository->findWithClass($path, static::$_edges[$key]['object']);
             }
         }
+
         return null;
+    }
+
+    public function isError()
+    {
+        return false;
     }
 
     protected function basePathForEdge()

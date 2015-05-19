@@ -10,10 +10,18 @@ class AdAccountRepository extends BaseRepository
 
     public function all()
     {
-        $list = $this->_all('me/adaccounts');
-        foreach( $list as $item ){
+        $list = $this->allWithClass('/me/adaccounts', 'AdAccount');
+        return $list;
+    }
 
+    public function find($adAccountId)
+    {
+        $adId = $adAccountId;
+        if( preg_match('/^\d+$/', $adAccountId) ){
+            $adId = 'act_' . $adAccountId;
         }
+        $adAccount = $this->findWithClass('/' . $adId, 'AdAccount');
+        return $adAccount;
     }
 
 }

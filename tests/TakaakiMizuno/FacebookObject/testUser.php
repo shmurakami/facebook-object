@@ -2,7 +2,7 @@
 
 namespace TakaakiMizuno\FacebookObject\tests;
 
-class testMe extends testBase
+class testUser extends testBase
 {
     public function testGetMe()
     {
@@ -24,9 +24,6 @@ class testMe extends testBase
 
         $adaccounts = $me->adaccounts;
         $this->assertTrue(is_array($adaccounts));
-
-        $adaccounts = $user->adaccounts;
-        $this->assertTrue(is_array($adaccounts));
-
+        
     }
 }

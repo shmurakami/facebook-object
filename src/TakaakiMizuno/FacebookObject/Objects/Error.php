@@ -5,10 +5,15 @@ namespace TakaakiMizuno\FacebookObject\Objects;
 class Error extends BaseObject
 {
 
-    protected $_fields = [
+    static protected $_fields = [
         'message',
         'type',
-        'code'
+        'code',
     ];
+
+    public function isError()
+    {
+        return true;
+    }
 
 }

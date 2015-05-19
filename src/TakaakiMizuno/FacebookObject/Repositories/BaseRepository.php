@@ -28,6 +28,11 @@ class BaseRepository
         return ( $object instanceof \TakaakiMizuno\FacebookObject\Objects\Error ) ? true : false;
     }
 
+    private function getFullNameOfClass($class)
+    {
+        return '\TakaakiMizuno\FacebookObject\Objects\\' . $class;
+    }
+
     /**
      * @param string $path
      * @param string $method
@@ -47,21 +52,28 @@ class BaseRepository
         }
     }
 
-    protected function _all($path)
+    protected function _all($path, $param)
     {
         $limit = 25;
         $offset = 0;
         $list = [];
         $hasNext = true;
         while ($hasNext) {
-            $result = $this->_get($path, $limit, $offset);
+            $result = $this->_get($path, $limit, $offset, $param);
             if( $this->checkError($result) ){
                 return $result;
+            }
+            $data = $result->getProperty('data');
+            if( empty($data) ){
+                return $list;
             }
             $list += $result->getProperty('data')->asArray();
             $paging = $result->getProperty('paging');
             if (null !== $paging && null != $paging->getProperty('next')) {
-                $hasNext = true;
+                if( preg_match('/(\/act_\d+\/.+)$/', $paging->getProperty('next'), $matches) ){
+                    $path = $matches[1];
+                    $hasNext = true;
+                }
             } else {
                 $hasNext = false;
             }
@@ -69,10 +81,10 @@ class BaseRepository
         return $list;
     }
 
-    protected function _get($path, $limit = 1000, $offset = 0)
+    protected function _get($path, $limit = 1000, $offset = 0, $param)
     {
         $result = $this->_access('GET', $path,
-            [
+            $param + [
                 'limit'  => $limit,
                 'offset' => $offset,
             ]
@@ -80,14 +92,20 @@ class BaseRepository
         return $result;
     }
 
-    protected function _find($path)
+    protected function _find($path, $param)
     {
-        $result = $this->_access('GET', $path, []);
+        $result = $this->_access('GET', $path, $param);
         return $result;
     }
 
-    public function allWithClass($path, $class){
-        $list = $this->_all($path);
+    public function allWithClass($path, $class, $param = []){
+        $class = $this->getFullNameOfClass($class);
+        if( !empty($class::$_defaultFields) ){
+            $param = [
+                    'fields' => join(',',$class::$_defaultFields),
+                ] + $param;
+        }
+        $list = $this->_all($path, $param);
         if( $this->checkError($list) ){
             return $list;
         }
@@ -98,9 +116,15 @@ class BaseRepository
         return $result;
     }
 
-    public function getWithClass($path, $class, $limit = 1000, $offset = 0)
+    public function getWithClass($path, $class, $limit = 1000, $offset = 0, $param = [])
     {
-        $list = $this->_get($path, $limit, $offset);
+        $class = $this->getFullNameOfClass($class);
+        if( !empty($class::$_defaultFields) ){
+            $param = [
+                    'fields' => join(',',$class::$_defaultFields),
+                ] + $param;
+        }
+        $list = $this->_get($path, $limit, $offset, $param);
         if( $this->checkError($list) ){
             return $list;
         }
@@ -111,9 +135,15 @@ class BaseRepository
         return $result;
     }
 
-    public function findWithClass($path, $class)
+    public function findWithClass($path, $class, $param = [])
     {
-        $item = $this->_find($path);
+        $class = $this->getFullNameOfClass($class);
+        if( !empty($class::$_defaultFields) ){
+            $param = [
+                    'fields' => join(',',$class::$_defaultFields),
+                ] + $param;
+        }
+        $item = $this->_find($path, $param);
         if( $this->checkError($item) ){
             return $item;
         }

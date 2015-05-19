@@ -12,7 +12,7 @@ class UserRepository extends BaseRepository
 
     public function me()
     {
-        $me = $this->findWithClass('/me', '\TakaakiMizuno\FacebookObject\Objects\User');
+        $me = $this->findWithClass('/me', 'User');
         $me->isMe = true;
 
         return $me;
@@ -20,7 +20,7 @@ class UserRepository extends BaseRepository
 
     public function find($id)
     {
-        $me = $this->findWithClass('/' . $id, '\TakaakiMizuno\FacebookObject\Objects\User');
+        $me = $this->findWithClass('/' . $id, 'User');
         $me->isMe = false;
 
         return $me;

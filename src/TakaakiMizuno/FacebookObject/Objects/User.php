@@ -7,7 +7,7 @@ class User extends BaseObject
 
     public $isMe = false;
 
-    protected $_fields = [
+    static protected $_fields = [
         'id',
         'about',
         'address',
@@ -62,7 +62,7 @@ class User extends BaseObject
         'cover',
     ];
 
-    protected $_edges = [
+    static public $_edges = [
         'accounts'     => ['object' => 'Account', 'isList' => true],
         'achievements' => ['object' => 'Achievement', 'isList' => true],
         'activities'   => ['object' => 'Activity', 'isList' => true],

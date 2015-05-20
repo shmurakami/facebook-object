@@ -14,13 +14,10 @@ class AdAccountRepository extends BaseRepository
         return $list;
     }
 
-    public function find($adAccountId)
+    public function find($adId)
     {
-        $adId = $adAccountId;
-        if( preg_match('/^\d+$/', $adAccountId) ){
-            $adId = 'act_' . $adAccountId;
-        }
-        $adAccount = $this->findWithClass('/' . $adId, 'AdAccount');
+        $id = $this->generateIdFromAdId($adId);
+        $adAccount = $this->findWithClass('/' . $id, 'AdAccount');
         return $adAccount;
     }
 

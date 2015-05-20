@@ -23,9 +23,21 @@ class BaseRepository
      * @param \Facebook\GraphObject $object
      * @return \TakaakiMizuno\FacebookObject\Objects\Error|null
      */
-    private function checkError($object)
+    protected function checkError($object)
     {
         return ( $object instanceof \TakaakiMizuno\FacebookObject\Objects\Error ) ? true : false;
+    }
+
+    /**
+     * @param  string $adId
+     * @return string
+     */
+    protected function generateIdFromAdId($adId)
+    {
+        if( preg_match('/^\d+$/', $adId) ){
+            return 'act_' . $adId;
+        }
+        return $adId;
     }
 
     private function getFullNameOfClass($class)

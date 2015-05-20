@@ -23,7 +23,7 @@ class AdAccount extends BaseObject
 
     static public $_fields = [
         'account_id',
-        'id ',
+        'id',
         'account_status',
         'age',
         'amount_spent',
@@ -40,7 +40,7 @@ class AdAccount extends BaseObject
 
     static public $_defaultFields = [
         'account_id',
-        'id ',
+        'id',
         'account_status',
         'age',
         'amount_spent',

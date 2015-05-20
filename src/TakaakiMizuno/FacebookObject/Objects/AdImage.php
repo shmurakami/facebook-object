@@ -11,7 +11,6 @@ class AdImage extends BaseObject
         'url',
         'url_128',
         'creatives',
-        'id',
         'width',
         'height',
         'original_width',
@@ -21,6 +20,7 @@ class AdImage extends BaseObject
         'permalink_url',
         'status',
         'updated_time',
+        'hash',
     ];
 
     static public $_defaultFields = [
@@ -28,7 +28,6 @@ class AdImage extends BaseObject
         'url',
         'url_128',
         'creatives',
-        'id',
         'width',
         'height',
         'original_width',
@@ -38,6 +37,7 @@ class AdImage extends BaseObject
         'permalink_url',
         'status',
         'updated_time',
+        'hash',
     ];
 
     public function getTimeZone()

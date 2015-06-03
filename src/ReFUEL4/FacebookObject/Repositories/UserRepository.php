@@ -1,11 +1,11 @@
 <?php
 
-namespace TakaakiMizuno\FacebookObject\Repositories;
+namespace ReFUEL4\FacebookObject\Repositories;
 
 use Facebook\FacebookRequest;
 use Facebook\FacebookSession;
 
-use TakaakiMizuno\FacebookObject\Objects\User;
+use ReFUEL4\FacebookObject\Objects\User;
 
 class UserRepository extends BaseRepository
 {

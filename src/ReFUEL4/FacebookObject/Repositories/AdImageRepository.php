@@ -1,6 +1,6 @@
 <?php
 
-namespace TakaakiMizuno\FacebookObject\Repositories;
+namespace ReFUEL4\FacebookObject\Repositories;
 
 use Facebook\FacebookRequest;
 use Facebook\FacebookSession;
@@ -27,7 +27,7 @@ class AdImageRepository extends BaseRepository
         $image = new \FacebookAds\Object\AdImage(null, $id);
         $image->{\FacebookAds\Object\Fields\AdImageFields::FILENAME} = $filePath;
         $image->create();
-        return new \TakaakiMizuno\FacebookObject\Objects\AdImage(
+        return new \ReFUEL4\FacebookObject\Objects\AdImage(
             [
                 'hash' => $image->{\FacebookAds\Object\Fields\AdImageFields::HASH},
             ],

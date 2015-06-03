@@ -21,12 +21,12 @@
     },
     "autoload": {
         "psr-4": {
-            "TakaakiMizuno\\": "src/TakaakiMizuno/"
+            "ReFUEL4\\": "src/ReFUEL4/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "TakaakiMizuno\\": "tests/TakaakiMizuno/"
+            "ReFUEL4\\": "tests/ReFUEL4/"
         }
     }
 

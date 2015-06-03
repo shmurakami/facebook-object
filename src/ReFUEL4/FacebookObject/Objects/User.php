@@ -1,6 +1,6 @@
 <?php
 
-namespace TakaakiMizuno\FacebookObject\Objects;
+namespace ReFUEL4\FacebookObject\Objects;
 
 class User extends BaseObject
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace TakaakiMizuno\FacebookObject\Objects;
+namespace ReFUEL4\FacebookObject\Objects;
 
 use Facebook\FacebookRequest;
 use Facebook\FacebookSession;
-use TakaakiMizuno\FacebookObject\Repositories\BaseRepository;
+use ReFUEL4\FacebookObject\Repositories\BaseRepository;
 
 class BaseObject
 {
@@ -38,7 +38,7 @@ class BaseObject
         }
         if (array_key_exists($key, static::$_edges)) {
             $path = $this->basePathForEdge() . $key;
-            $repository = new \TakaakiMizuno\FacebookObject\Repositories\BaseRepository($this->_session);
+            $repository = new \ReFUEL4\FacebookObject\Repositories\BaseRepository($this->_session);
             if (static::$_edges[$key]['isList']) {
                 return $repository->allWithClass($path, static::$_edges[$key]['object']);
             } else {

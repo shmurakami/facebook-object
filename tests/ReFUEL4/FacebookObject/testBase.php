@@ -1,6 +1,6 @@
 <?php
 
-namespace TakaakiMizuno\FacebookObject\tests;
+namespace ReFUEL4\FacebookObject\tests;
 
 use Facebook\FacebookSession;
 use FacebookAds\Api;

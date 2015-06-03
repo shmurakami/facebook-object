@@ -1,6 +1,6 @@
 <?php
 
-namespace TakaakiMizuno\FacebookObject\Repositories;
+namespace ReFUEL4\FacebookObject\Repositories;
 
 use Facebook\FacebookRequest;
 use Facebook\FacebookSession;
@@ -27,7 +27,7 @@ class AdVideoRepository extends BaseRepository
         $image = new \FacebookAds\Object\AdVideo(null, $id);
         $image->{\FacebookAds\Object\Fields\AdVideoFields::SOURCE} = $filePath;
         $image->create();
-        return new \TakaakiMizuno\FacebookObject\Objects\AdVideo(
+        return new \ReFUEL4\FacebookObject\Objects\AdVideo(
             [
                 'id' => $image->{\FacebookAds\Object\Fields\AdVideoFields::ID},
             ],

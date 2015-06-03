@@ -1,11 +1,11 @@
-# TakaakiMizuno/FacebookObject
+# ReFUEL4/FacebookObject
 
 Fancy Wrapper Of Facebook PHP SDK.
 
 ## How To Use
 
 ```php
-$repository = new \TakaakiMizuno\FacebookObject\Repositories\UserRepository($session);
+$repository = new \ReFUEL4\FacebookObject\Repositories\UserRepository($session);
 $me = $repository->me();
 print $me->name;
 ```        

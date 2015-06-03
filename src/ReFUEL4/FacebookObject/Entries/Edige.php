@@ -1,11 +1,11 @@
 <?php
 
-namespace TakaakiMizuno\FacebookObject\Entries;
+namespace ReFUEL4\FacebookObject\Entries;
 
 class Edge
 {
 
-    /** @var \TakaakiMizuno\FacebookObject\Objects\BaseObject  */
+    /** @var \ReFUEL4\FacebookObject\Objects\BaseObject  */
     protected $object;
 
     /** @var  Bool */

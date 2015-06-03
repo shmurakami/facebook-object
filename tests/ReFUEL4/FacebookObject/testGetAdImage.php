@@ -1,13 +1,13 @@
 <?php
 
-namespace TakaakiMizuno\FacebookObject\tests;
+namespace ReFUEL4\FacebookObject\tests;
 
 class testGetAdImage extends testBase
 {
     public function testAdImage()
     {
         $session = $this->getSession();
-        $adAccountRepository = new \TakaakiMizuno\FacebookObject\Repositories\AdAccountRepository($session);
+        $adAccountRepository = new \ReFUEL4\FacebookObject\Repositories\AdAccountRepository($session);
         $adAccounts = $adAccountRepository->all();
 
         $this->assertTrue(is_array($adAccounts));
@@ -15,7 +15,7 @@ class testGetAdImage extends testBase
         $adAccount = $adAccounts[1];
 
 
-        $adImageRepository = new \TakaakiMizuno\FacebookObject\Repositories\AdImageRepository($session);
+        $adImageRepository = new \ReFUEL4\FacebookObject\Repositories\AdImageRepository($session);
         $adImage = $adImageRepository->create($adAccount->id, realpath(dirname(__FILE__)) . '/media/sample.jpg');
         print $adImage->hash;
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace TakaakiMizuno\FacebookObject\tests;
+namespace ReFUEL4\FacebookObject\tests;
 
 class testUser extends testBase
 {
@@ -8,10 +8,10 @@ class testUser extends testBase
     {
 
         $session = $this->getSession();
-        $repository = new \TakaakiMizuno\FacebookObject\Repositories\UserRepository($session);
+        $repository = new \ReFUEL4\FacebookObject\Repositories\UserRepository($session);
         $me = $repository->me();
 
-        $this->assertInstanceOf('\TakaakiMizuno\FacebookObject\Objects\User', $me, 'me object is UserObject');
+        $this->assertInstanceOf('\ReFUEL4\FacebookObject\Objects\User', $me, 'me object is UserObject');
         $this->assertTrue($me->isMe);
         $this->assertNotEmpty($me->id, 'ID exists in me object');
         $this->assertNotEmpty($me->name, 'name exists in me object');

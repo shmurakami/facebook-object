@@ -1,23 +1,23 @@
 <?php
 
-namespace TakaakiMizuno\FacebookObject\tests;
+namespace ReFUEL4\FacebookObject\tests;
 
 class testGetAdVideo extends testBase
 {
     public function testAdImage()
     {
         $session = $this->getSession();
-        $adAccountRepository = new \TakaakiMizuno\FacebookObject\Repositories\AdAccountRepository($session);
+        $adAccountRepository = new \ReFUEL4\FacebookObject\Repositories\AdAccountRepository($session);
         $adAccounts = $adAccountRepository->all();
 
         $this->assertTrue(is_array($adAccounts));
 
         $adAccount = $adAccounts[1];
 
-        $adVideoRepository = new \TakaakiMizuno\FacebookObject\Repositories\AdVideoRepository($session);
+        $adVideoRepository = new \ReFUEL4\FacebookObject\Repositories\AdVideoRepository($session);
         $adVideos = $adVideoRepository->all($adAccount->id);
         $this->assertTrue(is_array($adVideos));
-        $this->assertInstanceOf('\TakaakiMizuno\FacebookObject\Objects\AdVideo', $adVideos[0], 'object is AdVideo');
+        $this->assertInstanceOf('\ReFUEL4\FacebookObject\Objects\AdVideo', $adVideos[0], 'object is AdVideo');
 
         $adVideo = $adVideoRepository->create($adAccount->id, realpath(dirname(__FILE__)) . '/media/sample.mp4');
         print $adVideo->id;

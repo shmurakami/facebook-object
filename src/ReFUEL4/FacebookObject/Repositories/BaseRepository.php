@@ -1,6 +1,6 @@
 <?php
 
-namespace TakaakiMizuno\FacebookObject\Repositories;
+namespace ReFUEL4\FacebookObject\Repositories;
 
 use Facebook\FacebookRequest;
 use Facebook\FacebookSession;
@@ -21,11 +21,11 @@ class BaseRepository
 
     /**
      * @param \Facebook\GraphObject $object
-     * @return \TakaakiMizuno\FacebookObject\Objects\Error|null
+     * @return \ReFUEL4\FacebookObject\Objects\Error|null
      */
     protected function checkError($object)
     {
-        return ( $object instanceof \TakaakiMizuno\FacebookObject\Objects\Error ) ? true : false;
+        return ( $object instanceof \ReFUEL4\FacebookObject\Objects\Error ) ? true : false;
     }
 
     /**
@@ -42,7 +42,7 @@ class BaseRepository
 
     private function getFullNameOfClass($class)
     {
-        return '\TakaakiMizuno\FacebookObject\Objects\\' . $class;
+        return '\ReFUEL4\FacebookObject\Objects\\' . $class;
     }
 
     /**
@@ -60,7 +60,7 @@ class BaseRepository
             return $result;
         }catch (FacebookRequestException $e){
             $error = $e->getResponse();
-            return new \TakaakiMizuno\FacebookObject\Objects\Error($error['error'], $this->_session);
+            return new \ReFUEL4\FacebookObject\Objects\Error($error['error'], $this->_session);
         }
     }
 

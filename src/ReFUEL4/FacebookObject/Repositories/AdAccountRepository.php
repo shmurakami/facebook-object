@@ -1,6 +1,6 @@
 <?php
 
-namespace TakaakiMizuno\FacebookObject\Repositories;
+namespace ReFUEL4\FacebookObject\Repositories;
 
 use Facebook\FacebookRequest;
 use Facebook\FacebookSession;

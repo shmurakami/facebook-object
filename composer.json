@@ -1,10 +1,10 @@
 {
-    "name": "takaaki-mizuno/facebook-object",
+    "name": "refuel4/facebook-object",
     "description": "Object Oriented Interface For Facebook Graph Objects",
     "keywords": ["api", "facebook"],
     "type": "library",
     "license": "MIT",
-    "homepage": "https://github.com/takaaki-mizuno/facebook-object",
+    "homepage": "https://github.com/refuel4/facebook-object",
     "authors": [
       {
         "name": "Takaaki Mizuno",

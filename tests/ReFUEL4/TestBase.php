@@ -1,11 +1,11 @@
 <?php
 
-namespace ReFUEL4\FacebookObject\tests;
+namespace ReFUEL4\FacebookObject\Tests;
 
 use Facebook\FacebookSession;
 use FacebookAds\Api;
 
-abstract class testBase extends \PHPUnit_Framework_TestCase
+abstract class TestBase extends \PHPUnit_Framework_TestCase
 {
     /**
      * @return \Facebook\FacebookSession

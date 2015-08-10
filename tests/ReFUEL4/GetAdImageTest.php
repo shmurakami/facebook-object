@@ -16,6 +16,9 @@ class GetAdImageTest extends TestBase
 
         $adImageRepository = new \ReFUEL4\FacebookObject\Repositories\AdImageRepository($session);
         $adImage = $adImageRepository->create($adAccount->id, realpath(dirname(__FILE__)) . '/media/sample.jpg');
-        print $adImage->hash;
+
+        $this->assertNotEmpty($adImage->hash);
+        $this->assertNotEmpty($adImage->id);
+        $this->assertTrue($adImage->url !== null);
     }
 }

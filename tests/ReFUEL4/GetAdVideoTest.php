@@ -4,7 +4,7 @@ namespace ReFUEL4\FacebookObject\Tests;
 
 class GetAdVideoTest extends TestBase
 {
-    public function testAdImage()
+    public function testAdVideo()
     {
         $session = $this->getSession();
         $adAccountRepository = new \ReFUEL4\FacebookObject\Repositories\AdAccountRepository($session);

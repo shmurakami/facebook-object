@@ -5,7 +5,7 @@ namespace ReFUEL4\FacebookObject\Objects;
 class AdImage extends BaseObject
 {
 
-    static public $_fields = [
+    static public    $_fields        = [
         'id',
         'account_id',
         'url',
@@ -23,7 +23,7 @@ class AdImage extends BaseObject
         'hash',
     ];
 
-    static public $_defaultFields = [
+    static public    $_defaultFields = [
         'account_id',
         'url',
         'url_128',
@@ -38,6 +38,13 @@ class AdImage extends BaseObject
         'status',
         'updated_time',
         'hash',
+    ];
+
+    static protected $_defaultValues = [
+        'url'           => '',
+        'url_128'       => '',
+        'permalink_url' => '',
+        'id'            => '',
     ];
 
     public function getTimeZone()

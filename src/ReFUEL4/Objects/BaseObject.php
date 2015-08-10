@@ -15,6 +15,8 @@ class BaseObject
 
     static protected $_fields        = ['id'];
 
+    static protected $_defaultValues = [];
+
     /** @var array */
     protected $_data;
 
@@ -45,7 +47,9 @@ class BaseObject
                 return $repository->findWithClass($path, static::$_edges[$key]['object']);
             }
         }
-
+        if (in_array($key, static::$_fields) and array_key_exists($key, static::$_defaultValues)) {
+            return static::$_defaultValues[$key];
+        }
         return null;
     }
 

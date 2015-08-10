@@ -8,4 +8,4 @@ composer.phar
 composer.lock
 .idea/*
 
-tests/ReFUEL4/FacebookObject/config.json
+tests/ReFUEL4/config.json

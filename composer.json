@@ -7,26 +7,26 @@
     "homepage": "https://github.com/refuel4/facebook-object",
     "authors": [
       {
-        "name": "Takaaki Mizuno",
-        "email": "takaaki.mizuno@gmail.com"
+        "name": "ReFUEL4",
+        "email": "develop@refuel4.com"
       }
     ],
-	"require": {
-		"php": ">=5.4.0",
+    "require": {
+        "php": ">=5.4.0",
         "facebook/php-sdk-v4": "4.0.23",
         "facebook/php-ads-sdk": "2.3.1"
-	},
+    },
     "require-dev": {
         "phpunit/phpunit": ">=3.7.0"
     },
     "autoload": {
         "psr-4": {
-            "ReFUEL4\\": "src/ReFUEL4/"
+            "ReFUEL4\\FacebookObject\\": "src/ReFUEL4/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "ReFUEL4\\": "tests/ReFUEL4/"
+            "ReFUEL4\\FacebookObject\\Tests\\": "tests/ReFUEL4/"
         }
     }
 

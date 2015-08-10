@@ -1,8 +1,8 @@
 <?php
 
-namespace ReFUEL4\FacebookObject\tests;
+namespace ReFUEL4\FacebookObject\Tests;
 
-class testGetAdImage extends testBase
+class GetAdImageTest extends TestBase
 {
     public function testAdImage()
     {
@@ -12,8 +12,7 @@ class testGetAdImage extends testBase
 
         $this->assertTrue(is_array($adAccounts));
 
-        $adAccount = $adAccounts[1];
-
+        $adAccount = $adAccounts[0];
 
         $adImageRepository = new \ReFUEL4\FacebookObject\Repositories\AdImageRepository($session);
         $adImage = $adImageRepository->create($adAccount->id, realpath(dirname(__FILE__)) . '/media/sample.jpg');

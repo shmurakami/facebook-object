@@ -1,8 +1,8 @@
 <?php
 
-namespace ReFUEL4\FacebookObject\tests;
+namespace ReFUEL4\FacebookObject\Tests;
 
-class testUser extends testBase
+class UserTest extends TestBase
 {
     public function testGetMe()
     {
@@ -24,6 +24,6 @@ class testUser extends testBase
 
         $adaccounts = $me->adaccounts;
         $this->assertTrue(is_array($adaccounts));
-        
+
     }
 }

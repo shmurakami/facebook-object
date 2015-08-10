@@ -1,8 +1,8 @@
 <?php
 
-namespace ReFUEL4\FacebookObject\tests;
+namespace ReFUEL4\FacebookObject\Tests;
 
-class testGetAdVideo extends testBase
+class GetAdVideoTest extends TestBase
 {
     public function testAdImage()
     {
@@ -12,7 +12,7 @@ class testGetAdVideo extends testBase
 
         $this->assertTrue(is_array($adAccounts));
 
-        $adAccount = $adAccounts[1];
+        $adAccount = $adAccounts[0];
 
         $adVideoRepository = new \ReFUEL4\FacebookObject\Repositories\AdVideoRepository($session);
         $adVideos = $adVideoRepository->all($adAccount->id);

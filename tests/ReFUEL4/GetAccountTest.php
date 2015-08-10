@@ -1,8 +1,8 @@
 <?php
 
-namespace ReFUEL4\FacebookObject\tests;
+namespace ReFUEL4\FacebookObject\Tests;
 
-class testGetAccount extends testBase
+class GetAccountTest extends TestBase
 {
     public function testAdAccount()
     {
@@ -13,7 +13,7 @@ class testGetAccount extends testBase
 
         $this->assertTrue(is_array($adAccounts));
 
-        $adAccount = $adAccounts[1];
+        $adAccount = $adAccounts[0];
         $this->assertInstanceOf('\ReFUEL4\FacebookObject\Objects\AdAccount', $adAccount, 'object is AdAccount');
         $this->assertInstanceOf('DateTimeZone', $adAccount->getTimeZone(), 'Check Time Zone');
 

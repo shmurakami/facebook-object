@@ -1,8 +1,8 @@
 <?php
 
-namespace ReFUEL4\FacebookObject\tests;
+namespace ReFUEL4\FacebookObject\Tests;
 
-class testError extends testBase
+class ErrorTest extends TestBase
 {
     public function testGetError()
     {

@@ -10,7 +10,6 @@ class GetAccountTest extends TestBase
         $session = $this->getSession();
         $repository = new \ReFUEL4\FacebookObject\Repositories\AdAccountRepository($session);
         $adAccounts = $repository->all();
-
         $this->assertTrue(is_array($adAccounts));
 
         $adAccount = $adAccounts[0];

@@ -29,6 +29,7 @@ class AdImageRepository extends BaseRepository
         $image->create();
         return new \ReFUEL4\FacebookObject\Objects\AdImage(
             [
+                'id'   => $image->{\FacebookAds\Object\Fields\AdImageFields::ID},
                 'hash' => $image->{\FacebookAds\Object\Fields\AdImageFields::HASH},
             ],
             $this->_session

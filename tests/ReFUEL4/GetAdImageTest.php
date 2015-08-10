@@ -18,7 +18,7 @@ class GetAdImageTest extends TestBase
         $adImage = $adImageRepository->create($adAccount->id, realpath(dirname(__FILE__)) . '/media/sample.jpg');
 
         $this->assertNotEmpty($adImage->hash);
+        $this->assertNotEmpty($adImage->id);
         $this->assertTrue($adImage->url !== null);
-        $this->assertTrue($adImage->id !== null);
     }
 }

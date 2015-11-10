@@ -7,8 +7,8 @@ class GetAccountTest extends TestBase
     public function testAdAccount()
     {
 
-        $session = $this->getSession();
-        $repository = new \ReFUEL4\FacebookObject\Repositories\AdAccountRepository($session);
+        $facebook = $this->getFacebook();
+        $repository = new \ReFUEL4\FacebookObject\Repositories\AdAccountRepository($facebook);
         $adAccounts = $repository->all();
         $this->assertTrue(is_array($adAccounts));
 

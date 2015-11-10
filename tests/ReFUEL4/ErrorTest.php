@@ -7,8 +7,8 @@ class ErrorTest extends TestBase
     public function testGetError()
     {
 
-        $session = $this->getSession();
-        $repository = new \ReFUEL4\FacebookObject\Repositories\UserRepository($session);
+        $facebook = $this->getFacebook();
+        $repository = new \ReFUEL4\FacebookObject\Repositories\UserRepository($facebook);
 
         $error = $repository->find(4321);
 

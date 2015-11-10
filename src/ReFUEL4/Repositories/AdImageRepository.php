@@ -32,7 +32,7 @@ class AdImageRepository extends BaseRepository
                 'id'   => $image->{\FacebookAds\Object\Fields\AdImageFields::ID},
                 'hash' => $image->{\FacebookAds\Object\Fields\AdImageFields::HASH},
             ],
-            $this->_session
+            $this->_facebook
         );
     }
 

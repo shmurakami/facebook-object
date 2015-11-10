@@ -6,15 +6,15 @@ class GetAdImageTest extends TestBase
 {
     public function testAdImage()
     {
-        $session = $this->getSession();
-        $adAccountRepository = new \ReFUEL4\FacebookObject\Repositories\AdAccountRepository($session);
+        $facebook = $this->getFacebook();
+        $adAccountRepository = new \ReFUEL4\FacebookObject\Repositories\AdAccountRepository($facebook);
         $adAccounts = $adAccountRepository->all();
 
         $this->assertTrue(is_array($adAccounts));
 
         $adAccount = $adAccounts[0];
 
-        $adImageRepository = new \ReFUEL4\FacebookObject\Repositories\AdImageRepository($session);
+        $adImageRepository = new \ReFUEL4\FacebookObject\Repositories\AdImageRepository($facebook);
         $adImage = $adImageRepository->create($adAccount->id, realpath(dirname(__FILE__)) . '/media/sample.jpg');
 
         $this->assertNotEmpty($adImage->hash);

@@ -2,25 +2,25 @@
 
 namespace ReFUEL4\FacebookObject\Repositories;
 
+use Facebook\Exceptions\FacebookSDKException;
 use Facebook\FacebookRequest;
-use Facebook\FacebookSession;
-use Facebook\FacebookRequestException;
+use Facebook\GraphNodes\GraphNodeFactory;
 
 class BaseRepository
 {
-    /** @var \Facebook\FacebookSession */
-    protected $_session;
+    /** @var \Facebook\Facebook */
+    protected $_facebook;
 
     /**
-     * @param \Facebook\FacebookSession $session
+     * @param \Facebook\Facebook $facebook
      */
-    public function __construct($session)
+    public function __construct($facebook)
     {
-        $this->_session = $session;
+        $this->_facebook = $facebook;
     }
 
     /**
-     * @param \Facebook\GraphObject $object
+     * @param \Facebook\GraphNodes\GraphEdge $object
      * @return \ReFUEL4\FacebookObject\Objects\Error|null
      */
     protected function checkError($object)
@@ -49,19 +49,11 @@ class BaseRepository
      * @param string $path
      * @param string $method
      * @param array $params
-     * @return \Facebook\GraphObject|null
+     * @return \Facebook\FacebookResponse
      */
     private function _access($method, $path, $params)
     {
-        try {
-            $result = (new FacebookRequest(
-                $this->_session, $method, $path, $params
-            ))->execute()->getGraphObject();
-            return $result;
-        }catch (FacebookRequestException $e){
-            $error = $e->getResponse();
-            return new \ReFUEL4\FacebookObject\Objects\Error($error['error'], $this->_session);
-        }
+        return $this->_facebook->sendRequest($method, $path, $params);
     }
 
     protected function _all($path, $param)
@@ -75,39 +67,54 @@ class BaseRepository
             if( $this->checkError($result) ){
                 return $result;
             }
-            $data = $result->getProperty('data');
-            if( empty($data) ){
+            if( !$result->count() ){
                 return $list;
             }
-            $list += $result->getProperty('data')->asArray();
-            $paging = $result->getProperty('paging');
-            if (null !== $paging && null != $paging->getProperty('next')) {
-                if( preg_match('/(\/act_\d+\/.+)$/', $paging->getProperty('next'), $matches) ){
-                    $path = $matches[1];
-                    $hasNext = true;
-                }
-            } else {
+            foreach ($result->asArray() as $item) {
+                $list[] = $item;
+            }
+            $paging = $result->getNextCursor();
+            if( is_null($paging) ){
                 $hasNext = false;
+            } else {
+                $path = $result->getPaginationUrl('next');
+                if (is_null($path)) {
+                    $hasNext = false;
+                }
             }
         }
         return $list;
     }
 
+    /**
+     * @param $path
+     * @param int $limit
+     * @param int $offset
+     * @param $param
+     * @return \Facebook\GraphNodes\GraphNode
+     */
     protected function _get($path, $limit = 1000, $offset = 0, $param)
     {
-        $result = $this->_access('GET', $path,
-            $param + [
-                'limit'  => $limit,
-                'offset' => $offset,
-            ]
-        );
-        return $result;
+        try {
+            return $this->_access('GET', $path,
+                $param + [
+                    'limit'  => $limit,
+                    'offset' => $offset,
+                ]
+            )->getGraphEdge();
+
+        } catch (FacebookSDKException $e) {
+            return new \ReFUEL4\FacebookObject\Objects\Error($e->getMessage(), $this->_facebook);
+        }
     }
 
     protected function _find($path, $param)
     {
-        $result = $this->_access('GET', $path, $param);
-        return $result;
+        try {
+            return $this->_access('GET', $path, $param)->getGraphNode();
+        } catch (FacebookSDKException $e) {
+            return new \ReFUEL4\FacebookObject\Objects\Error($e->getMessage(), $this->_facebook);
+        }
     }
 
     public function allWithClass($path, $class, $param = []){
@@ -123,7 +130,7 @@ class BaseRepository
         }
         $result = [];
         foreach( $list as $item ){
-            $result[] = new $class(json_decode(json_encode($item), true), $this->_session);
+            $result[] = new $class(json_decode(json_encode($item), true), $this->_facebook);
         }
         return $result;
     }
@@ -142,7 +149,7 @@ class BaseRepository
         }
         $result = [];
         foreach( $list as $item ){
-            $result[] = new $class($item->asArray(), $this->_session);
+            $result[] = new $class($item->asArray(), $this->_facebook);
         }
         return $result;
     }
@@ -159,7 +166,7 @@ class BaseRepository
         if( $this->checkError($item) ){
             return $item;
         }
-        return new $class($item->asArray(), $this->_session);
+        return new $class($item->asArray(), $this->_facebook);
     }
 
 }

@@ -31,7 +31,7 @@ class AdVideoRepository extends BaseRepository
             [
                 'id' => $image->{\FacebookAds\Object\Fields\AdVideoFields::ID},
             ],
-            $this->_session
+            $this->_facebook
         );
     }
 

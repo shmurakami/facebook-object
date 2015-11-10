@@ -7,7 +7,7 @@ class UserTest extends TestBase
     public function testGetMe()
     {
 
-        $session = $this->getSession();
+        $session = $this->getFacebook();
         $repository = new \ReFUEL4\FacebookObject\Repositories\UserRepository($session);
         $me = $repository->me();
 

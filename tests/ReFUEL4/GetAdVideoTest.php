@@ -6,15 +6,15 @@ class GetAdVideoTest extends TestBase
 {
     public function testAdVideo()
     {
-        $session = $this->getSession();
-        $adAccountRepository = new \ReFUEL4\FacebookObject\Repositories\AdAccountRepository($session);
+        $facebook = $this->getFacebook();
+        $adAccountRepository = new \ReFUEL4\FacebookObject\Repositories\AdAccountRepository($facebook);
         $adAccounts = $adAccountRepository->all();
 
         $this->assertTrue(is_array($adAccounts));
 
         $adAccount = $adAccounts[0];
 
-        $adVideoRepository = new \ReFUEL4\FacebookObject\Repositories\AdVideoRepository($session);
+        $adVideoRepository = new \ReFUEL4\FacebookObject\Repositories\AdVideoRepository($facebook);
         $adVideos = $adVideoRepository->all($adAccount->id);
         $this->assertTrue(is_array($adVideos));
         $this->assertInstanceOf('\ReFUEL4\FacebookObject\Objects\AdVideo', $adVideos[0], 'object is AdVideo');

@@ -3,7 +3,6 @@
 namespace ReFUEL4\FacebookObject\Objects;
 
 use Facebook\FacebookRequest;
-use Facebook\FacebookSession;
 use ReFUEL4\FacebookObject\Repositories\BaseRepository;
 
 class BaseObject
@@ -20,17 +19,17 @@ class BaseObject
     /** @var array */
     protected $_data;
 
-    /** @var \Facebook\FacebookSession */
-    protected        $_session;
+    /** @var \Facebook\Facebook */
+    protected        $_facebook;
 
     /**
      * @param array $data
-     * @param \Facebook\FacebookSession $session
+     * @param \Facebook\Facebook $facebook
      */
-    public function __construct($data, $session)
+    public function __construct($data, $facebook)
     {
         $this->_data = $data;
-        $this->_session = $session;
+        $this->_facebook = $facebook;
     }
 
     public function __get($key)
@@ -40,7 +39,7 @@ class BaseObject
         }
         if (array_key_exists($key, static::$_edges)) {
             $path = $this->basePathForEdge() . $key;
-            $repository = new \ReFUEL4\FacebookObject\Repositories\BaseRepository($this->_session);
+            $repository = new \ReFUEL4\FacebookObject\Repositories\BaseRepository($this->_facebook);
             if (static::$_edges[$key]['isList']) {
                 return $repository->allWithClass($path, static::$_edges[$key]['object']);
             } else {

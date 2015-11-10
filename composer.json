@@ -4,7 +4,7 @@
     "keywords": ["api", "facebook"],
     "type": "library",
     "license": "MIT",
-    "homepage": "https://github.com/refuel4/facebook-object",
+    "homepage": "https://github.com/shmurakami/facebook-object",
     "authors": [
       {
         "name": "ReFUEL4",
@@ -56,8 +56,7 @@
     "autoload": {
         "psr-4": {
             "ReFUEL4\\FacebookObject\\": "src/ReFUEL4/",
-            "Facebook\\": "vendor/shmurakami/facebook-php-sdk-v4/src/Facebook",
-            "FacebookAds\\": "vendor/shmurakami/facebook-php-ads-sdk/src/FacebookAds"
+            "Facebook\\": "vendor/shmurakami/facebook-php-sdk-v4/src/Facebook"
         }
     },
     "autoload-dev": {

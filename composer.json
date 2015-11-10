@@ -13,15 +13,51 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "facebook/php-sdk-v4": "4.0.23",
-        "facebook/php-ads-sdk": "2.3.1"
+        "shmurakami/facebook-php-sdk-v4": "dev-master",
+        "shmurakami/facebook-php-ads-sdk": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": ">=3.7.0"
     },
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "shmurakami/facebook-php-sdk-v4",
+                "version": "dev-master",
+                "dist": {
+                    "url": "https://github.com/shmurakami/facebook-php-sdk-v4/zipball/master",
+                    "type": "git"
+                },
+                "source": {
+                    "url": "https://github.com/shmurakami/facebook-php-sdk-v4",
+                    "type": "git",
+                    "reference": "master"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "shmurakami/facebook-php-ads-sdk",
+                "version": "dev-master",
+                "dist": {
+                    "url": "https://github.com/shmurakami/facebook-php-ads-sdk/zipball/master",
+                    "type": "git"
+                },
+                "source": {
+                    "url": "https://github.com/shmurakami/facebook-php-ads-sdk",
+                    "type": "git",
+                    "reference": "master"
+                }
+            }
+        }
+    ],
     "autoload": {
         "psr-4": {
-            "ReFUEL4\\FacebookObject\\": "src/ReFUEL4/"
+            "ReFUEL4\\FacebookObject\\": "src/ReFUEL4/",
+            "Facebook\\": "vendor/shmurakami/facebook-php-sdk-v4/src/Facebook",
+            "FacebookAds\\": "vendor/shmurakami/facebook-php-ads-sdk/src/FacebookAds"
         }
     },
     "autoload-dev": {

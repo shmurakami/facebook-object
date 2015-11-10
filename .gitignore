@@ -5,7 +5,6 @@
 .#
 /vendor
 composer.phar
-composer.lock
 .idea/*
 
 tests/ReFUEL4/config.json
